@@ -97,7 +97,7 @@ FROM: bioconductor/release_base2:R3.4.3_Bioc3.6
 
   #Install Plugins
   nvim +'PlugInstall --sync' +qa
-  #update nvimcom - this requires Rstart to be remapped as done in the vimrc
+  #update nvimcom - this requires Rstart to be remapped in your .vimrc, see https://github.com/nrachman/vim
   nvim +'RStart --sync' +qa
 
 %apprun R
