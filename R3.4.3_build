@@ -82,6 +82,9 @@ FROM: bioconductor/release_base2:R3.4.3_Bioc3.6
   R -e "install.packages('uwot')"
   R -e "install.packages('Rtsne')"
 
+  #Install neovim and nvim-R
+  sudo apt-get install neovim
+
   #Install vim-plug Plugin Manager for Neovim
   dest=~/.local/share/nvim/site/autoload/plug.vim
   mkdir -p $(dirname $dest)
