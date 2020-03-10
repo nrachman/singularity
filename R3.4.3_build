@@ -1,0 +1,96 @@
+Bootstrap: docker
+FROM: bioconductor/release_base2:R3.4.3_Bioc3.6
+#see https://hub.docker.com/r/bioconductor/release_base2
+
+%help
+  R version 3.4.3
+
+%setup
+
+%files
+
+%labels
+  nicholas.rachmaninoff@nih.gov
+  R_Version 3.4.3
+
+%environment
+  R_BASE_VERSION=3.4.3
+  LC_ALL=en_US.UTF-8
+  LANG=en_US.UTF-8
+
+%post
+  #apt-get install -y libudunits2-dev
+
+  R -e "BiocManager::install('limma')"
+  R -e "BiocManager::install('edgeR')"
+  R -e "BiocManager::install('DESeq2')"
+  R -e "BiocManager::install('variancePartition')"
+  R -e "BiocManager::install('preprocessCore')" #needed for metaintegrator
+  R -e "BiocManager::install('GEOquery')"
+  R -e "BiocManager::install('sva')"
+  R -e "BiocManager::install('impute')"
+  R -e "BiocManager::install('GO.db')" #needed for WGCNA
+  R -e "BiocManager::install('SummarizedExperiment')" 
+  R -e "BiocManager::install('chromVAR')" 
+  R -e "BiocManager::install('motifmatchr')" 
+  R -e "BiocManager::install('BiocParallel')" 
+  R -e "BiocManager::install('BSgenome.Hsapiens.UCSC.hg19')" 
+  R -e "BiocManager::install('TxDb.Hsapiens.UCSC.hg19.knownGene')" 
+  R -e "BiocManager::install('annotate')" 
+  R -e "BiocManager::install('org.Hs.eg.db')" 
+  R -e "BiocManager::install('gwascat')" 
+  R -e "BiocManager::install('AnnotationDbi')" 
+  R -e "BiocManager::install('GenomicFeatures')" 
+  
+
+#  R -e "install.packages('ropls')"
+#  R -e "install.packages('caret')"
+#  R -e "install.packages('methods')"
+
+  R -e "install.packages('devtools')"
+  #R -e "devtools::install_github('jokergoo/ComplexHeatmap')"
+  R -e "install.packages('doMC')"
+    R -e "install.packages('dendextend')"
+  R -e "install.packages('foreach')"
+  R -e "install.packages('ggrepel')"
+
+  R -e "install.packages('knitr')"
+  R -e "install.packages('tidyverse')"
+  R -e "install.packages('ComplexHeatmap')"
+  R -e "install.packages('tidygraph')"
+  R -e "install.packages('units')"
+  R -e "install.packages('ggraph')"
+  R -e "install.packages('igraph')"
+  R -e "install.packages('randomForest')"
+  R -e "install.packages('reshape2')"
+  R -e "install.packages('fpc')"
+  R -e "install.packages('glmnet')"
+  R -e "install.packages('WGCNA')"
+  R -e "install.packages('statmod')"
+ 
+  R -e "install.packages('ggpubr')"
+  R -e "install.packages('pheatmap')"
+  R -e "install.packages('viridis')"
+  R -e "install.packages('ggforce')"
+  R -e "install.packages('ggrepel')"
+  R -e "install.packages('cowplot')"
+  R -e "install.packages('gridExtra')"
+
+  R -e "install.packages('umap')"
+  R -e "install.packages('uwot')"
+  R -e "install.packages('Rtsne')"
+
+%apprun R
+  exec R &quot;${@}&quot;
+
+%apprun Rscript
+  exec Rscript &quot;${@}&quot;
+
+%apprun rstudio
+  exec rstudio &quot;${@}&quot;
+
+%runscript
+  exec &quot;${@}&quot;
+
+%test
+  exec R --version
