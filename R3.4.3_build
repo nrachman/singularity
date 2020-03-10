@@ -21,7 +21,7 @@ FROM: bioconductor/release_base2:R3.4.3_Bioc3.6
 %post
   #apt-get install -y libudunits2-dev
 
-  R -e "install.packages('BiocMananager')"
+  R -e "install.packages('BiocManager')"
   R -e "BiocManager::install('limma')"
   R -e "BiocManager::install('edgeR')"
   R -e "BiocManager::install('DESeq2')"
