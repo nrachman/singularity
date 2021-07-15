@@ -29,9 +29,15 @@ FROM: bioconductor/release_core2:R3.5.1_Bioc3.8
   apt-get install -y libudunits2-dev
   
 
-  R -e "BiocManager::install('limma')"
-  R -e "BiocManager::install('variancePartition')"
+  R -e "install.packages('ff')"
+  R -e "BiocManager::install('oligoClasses')"
   R -e "BiocManager::install('oligo')"
+  R -e "install.packages('nloptr')"
+  R -e "install.packages('lme4')"
+  R -e "install.packages('caTools')"
+  R -e "install.packages('gplots')"
+  R -e "BiocManager::install('variancePartition')"
+  R -e "BiocManager::install('limma')"
   R -e "BiocManager::install('pd.hugene.1.0.st.v1')"
   R -e "BiocManager::install('preprocessCore')" #needed for metaintegrator
   R -e "BiocManager::install('GEOquery')"
